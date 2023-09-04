@@ -11,6 +11,7 @@ import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
 import com.etendoerp.sonar.utils.IssueMessages;
+import com.etendoerp.sonar.utils.StatementUtils;
 
 @Rule(key = "SetAdminModeInTry")
 public class SetAdminModeInTry extends IssuableSubscriptionVisitor {
@@ -28,8 +29,8 @@ public class SetAdminModeInTry extends IssuableSubscriptionVisitor {
     IdentifierTree methodExpression = (IdentifierTree) methodInvocation.expression();
     IdentifierTree methodIdentifier = methodInvocation.identifier();
 
-    if (StringUtils.equals("OBContext", methodExpression.name()) &&
-        StringUtils.equals("setAdminMode", methodIdentifier.name())) {
+    if (StatementUtils.methodMatchesExpressionAndIdentifier(methodInvocation, methodExpression.name(),
+        methodIdentifier.name())) {
       while (currentLocation.parent() != null && !(currentLocation.parent().is(Tree.Kind.TRY_STATEMENT))) {
         currentLocation = currentLocation.parent();
       }

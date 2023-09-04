@@ -8,7 +8,7 @@ class SetAdminModeInTryTest {
   @Test
   void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/SetAdminModeInTry.java")
+        .onFile("src/test/resources/SetAdminModeInTry.java")
         .withCheck(new SetAdminModeInTry())
         .verifyIssues();
   }

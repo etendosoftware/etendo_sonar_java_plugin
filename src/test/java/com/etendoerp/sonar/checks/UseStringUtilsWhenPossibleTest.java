@@ -8,7 +8,7 @@ class UseStringUtilsWhenPossibleTest {
   @Test
   void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/UseStringUtilsWhenPossible.java")
+        .onFile("src/test/resources/UseStringUtilsWhenPossible.java")
         .withCheck(new UseStringUtilsWhenPossible())
         .verifyIssues();
   }

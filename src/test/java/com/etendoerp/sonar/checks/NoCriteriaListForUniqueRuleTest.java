@@ -8,7 +8,7 @@ class NoCriteriaListForUniqueRuleTest {
   @Test
   void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/NoCriteriaListForUniqueRule.java")
+        .onFile("src/test/resources/NoCriteriaListForUniqueRule.java")
         .withCheck(new NoCriteriaListForUniqueRule())
         .verifyIssues();
   }

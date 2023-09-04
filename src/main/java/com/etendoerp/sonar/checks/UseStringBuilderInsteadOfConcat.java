@@ -1,7 +1,6 @@
 package com.etendoerp.sonar.checks;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -35,7 +34,7 @@ public class UseStringBuilderInsteadOfConcat extends IssuableSubscriptionVisitor
   @RuleProperty(
       key = "str_length",
       defaultValue = "" + STR_LEN_DEFAULT_VALUE,
-      description = "")
+      description = "The minimum size a String should be to be taken into account when counting concatenations")
   protected int minStrLen = STR_LEN_DEFAULT_VALUE;
 
   @Override

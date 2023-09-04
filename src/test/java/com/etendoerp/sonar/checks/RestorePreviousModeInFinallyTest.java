@@ -8,7 +8,7 @@ class RestorePreviousModeInFinallyTest {
   @Test
   void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/RestorePreviousModeInFinally.java")
+        .onFile("src/test/resources/RestorePreviousModeInFinally.java")
         .withCheck(new RestorePreviousModeInFinally())
         .verifyIssues();
   }

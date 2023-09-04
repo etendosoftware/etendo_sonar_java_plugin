@@ -1,6 +1,7 @@
 package com.etendoerp.sonar.utils;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.sonar.java.model.expression.MemberSelectExpressionTreeImpl;
@@ -64,6 +65,11 @@ public class StatementUtils {
         binaryExpression.rightOperand());
   }
 
+  /**
+   * Check whether an 'if' statement is handling a method's initial error condition
+   * @param ifStatement the statement to be evaluated
+   * @return true if the statements has a 'throw' statement, handling an error condition
+   */
   public static boolean statementHandlesInitialErrorCond(IfStatementTree ifStatement) {
     StatementTree elseStatement = ifStatement.elseStatement();
 
@@ -74,6 +80,12 @@ public class StatementUtils {
     return elseBlock.body().stream().anyMatch(t -> t.is(Tree.Kind.THROW_STATEMENT));
   }
 
+  /**
+   * Check whether an 'if' statement is a simple if-else. That is, an if-else statement composed of only one sentence
+   * on each block
+   * @param ifStatement the statement to be evaluated
+   * @return true if the statement is a simple if-else statement
+   */
   public static boolean statementIsSimpleIfElse(IfStatementTree ifStatement) {
     StatementTree thenStatement = ifStatement.thenStatement();
     StatementTree elseStatement = ifStatement.elseStatement();
@@ -90,6 +102,12 @@ public class StatementUtils {
         thenStatementIsOneSentence && elseStatementIsOneSentence;
   }
 
+  /**
+   * Check if a statement block contains the specified kind
+   * @param thenStatement the statement to be evaluated
+   * @param kind the kind that will be looked for in the statement
+   * @return true if the kind is found inside the statement block
+   */
   public static boolean statementShouldContainKind(StatementTree thenStatement, Tree.Kind kind) {
     boolean statementHasOnlyKindStatement;
     if (thenStatement.is(Tree.Kind.BLOCK)) {
@@ -101,6 +119,12 @@ public class StatementUtils {
     return statementHasOnlyKindStatement;
   }
 
+  /**
+   * Check whether an 'if' statement is part of a simple search loop. This is, if the statement's purpose is only to
+   * change a variable's state after achieving a condition, and exit the loop
+   * @param ifStatement the statement to be evaluated
+   * @return true if the statement is part of a search loop
+   */
   public static boolean statementIsPartOfSearchLoop(IfStatementTree ifStatement) {
     StatementTree thenStatement = ifStatement.thenStatement();
     Tree parent = ifStatement.parent();
@@ -114,7 +138,16 @@ public class StatementUtils {
     return StatementUtils.statementShouldContainKind(thenStatement, Tree.Kind.BREAK_STATEMENT);
   }
 
-  public static MethodInvocationTree getMethodIfExists(BlockTree block, String methodExpressionName,
+  /**
+   * Search inside a block statement for the specified method's occurrences. If not found, return null
+   * @param block the block to be analyzed
+   * @param methodExpressionName the method's expression name. That would be the expression from where the method is
+   * invoked. E.g: on 'x.method()' the expression would be 'x'
+   * @param methodIdentifierName the method's identifier name. That would be the name of the method being invoked.
+   * E.g: on 'x.method()' the identifier would be 'method'
+   * @return the MethodInvocationInstance for the method, if found. Else null
+   */
+  public static Optional<MethodInvocationTree> getMethodIfExists(BlockTree block, String methodExpressionName,
       String methodIdentifierName) {
     List<StatementTree> blockStatements = block.body();
 
@@ -130,15 +163,22 @@ public class StatementUtils {
           }
 
           if (methodMatchesExpressionAndIdentifier(methodSelect, methodExpressionName, methodIdentifierName)) {
-            return methodInvocation;
+            return Optional.of(methodInvocation);
           }
         }
       }
     }
-    return null;
+    return Optional.empty();
   }
 
-  private static boolean methodMatchesExpressionAndIdentifier(ExpressionTree method, String expression,
+  /**
+   * Check if a given method's expression and identifier match with the specified names
+   * @param method the method being analyzed
+   * @param expression the expression's name
+   * @param identifier the identifier's name
+   * @return true if the method's expression and identifier match the values
+   */
+  public static boolean methodMatchesExpressionAndIdentifier(ExpressionTree method, String expression,
       String identifier) {
     MemberSelectExpressionTreeImpl memberSelect = (MemberSelectExpressionTreeImpl) method;
     ExpressionTree statementExpression = memberSelect.expression();
@@ -147,7 +187,8 @@ public class StatementUtils {
       String statementExpressionName = ((IdentifierTree) statementExpression).name();
       String statementIdentifierName = statementIdentifier.name();
 
-      return expression.equals(statementExpressionName) && identifier.equals(statementIdentifierName);
+      return StringUtils.equals(statementExpressionName, expression) &&
+          StringUtils.equals(statementIdentifierName, identifier);
     }
     return false;
   }

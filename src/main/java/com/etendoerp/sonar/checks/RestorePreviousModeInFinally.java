@@ -2,6 +2,7 @@ package com.etendoerp.sonar.checks;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
@@ -23,20 +24,20 @@ public class RestorePreviousModeInFinally extends IssuableSubscriptionVisitor {
   @Override
   public void visitNode(Tree tree) {
     TryStatementTree tryStatement = (TryStatementTree) tree;
-    MethodInvocationTree setAdminModeInsideTry = StatementUtils.getMethodIfExists(tryStatement.block(), "OBContext",
-        "setAdminMode");
-    if (setAdminModeInsideTry != null) {
+    Optional<MethodInvocationTree> setAdminModeInsideTry = StatementUtils
+        .getMethodIfExists(tryStatement.block(), "OBContext", "setAdminMode");
+    if (setAdminModeInsideTry.isPresent()) {
       BlockTree finallyStatement = tryStatement.finallyBlock();
 
-      if (finallyStatement != null) {
-        MethodInvocationTree restoreMethod = StatementUtils.getMethodIfExists(finallyStatement, "OBContext",
-            "restorePreviousMode");
-        if (restoreMethod != null) {
-          return;
-        }
+      if (finallyStatement == null) {
+        reportIssue(setAdminModeInsideTry.get(), IssueMessages.CONTEXT_MODE_NOT_RESTORED);
+        return;
       }
-
-      reportIssue(setAdminModeInsideTry, IssueMessages.CONTEXT_MODE_NOT_RESTORED);
+      Optional<MethodInvocationTree> restoreMethod = StatementUtils
+          .getMethodIfExists(finallyStatement, "OBContext", "restorePreviousMode");
+      if (!restoreMethod.isPresent()) {
+        reportIssue(setAdminModeInsideTry.get(), IssueMessages.CONTEXT_MODE_NOT_RESTORED);
+      }
     }
   }
 }

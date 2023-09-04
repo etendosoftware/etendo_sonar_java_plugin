@@ -8,7 +8,7 @@ class DoEarlyReturnWhenPossibleTest {
   @Test
   void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/DoEarlyReturnWhenPossible.java")
+        .onFile("src/test/resources/DoEarlyReturnWhenPossible.java")
         .withCheck(new DoEarlyReturnWhenPossible())
         .verifyIssues();
   }

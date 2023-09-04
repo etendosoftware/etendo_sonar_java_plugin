@@ -2,11 +2,11 @@ name: Auto Reviewer
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [ opened, reopened, synchronize ]
 
 jobs:
   make-review:
-    if:  github.head_ref != 'develop'
+    if: github.head_ref != 'develop'
     runs-on: ubuntu-latest
     env:
       PULL_REQUEST: ${{ github.event.pull_request.number }}

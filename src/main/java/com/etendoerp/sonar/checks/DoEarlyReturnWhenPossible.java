@@ -11,7 +11,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 import com.etendoerp.sonar.utils.IssueMessages;
 import com.etendoerp.sonar.utils.StatementUtils;
 
-@Rule(key = "DoEarlyReturnWhenPossible.java")
+@Rule(key = "DoEarlyReturnWhenPossible")
 public class DoEarlyReturnWhenPossible extends IssuableSubscriptionVisitor {
   @Override
   public List<Tree.Kind> nodesToVisit() {

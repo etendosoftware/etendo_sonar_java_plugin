@@ -8,7 +8,7 @@ class NoListMethodsInForClauseTest {
   @Test
   void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/NoListMethodsInForClause.java")
+        .onFile("src/test/resources/NoListMethodsInForClause.java")
         .withCheck(new NoListMethodsInForClause())
         .verifyIssues();
   }

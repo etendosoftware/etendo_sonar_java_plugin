@@ -1,6 +1,5 @@
 package com.etendoerp.sonar.checks;
 
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.sonar.java.checks.verifier.CheckVerifier;
 
@@ -10,7 +9,7 @@ class UseStringBuilderInsteadOfConcatTest {
   void test() {
     assert true;
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/UseStringBuilderInsteadOfConcat.java")
+        .onFile("src/test/resources/UseStringBuilderInsteadOfConcat.java")
         .withCheck(new UseStringBuilderInsteadOfConcat())
         .verifyIssues();
   }
