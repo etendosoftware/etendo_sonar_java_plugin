@@ -35,6 +35,7 @@ public final class RulesList {
         NoListMethodsInForClause.class,
         SetAdminModeInTry.class,
         RestorePreviousModeInFinally.class,
+        UseStringBuilderInsteadOfConcat.class,
         UseStringUtilsWhenPossible.class);
   }
 
