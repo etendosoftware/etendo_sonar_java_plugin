@@ -1,0 +1,11 @@
+{
+  "title": "Early-returns should be used whenever possible",
+  "type": "code_smell",
+  "status": "ready",
+  "tags": [
+    "bad-practice",
+    "etendo",
+    "confusing"
+  ],
+  "defaultSeverity": "Critical"
+}

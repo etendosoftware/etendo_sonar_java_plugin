@@ -1,0 +1,12 @@
+{
+  "title": "OBContext.restorePreviousMode() should be called in finally block if OBContext.setAdminMode(true) was called",
+  "type": "Bug",
+  "status": "ready",
+  "tags": [
+    "error-handling",
+    "unpredictable",
+    "etendo",
+    "pitfall"
+  ],
+  "defaultSeverity": "Critical"
+}

@@ -1,0 +1,49 @@
+<p>
+  String concatenation using the StringBuilder class should be preferred over other kinds of
+  concatenation. This class does the operations more efficiently, and the code ends up being
+  easier to read than when other forms of String concatenation are used.<br><br>
+
+  This rule only detects concatenations of the form:
+<pre>
+  String str = "" + "string 1 " + "string 2 " + "string 3 " + "...";
+  </pre>
+Other types of String concatenation - like plus assignments or method calls - will not be detected<br><br>
+
+The rule will be triggered only the following conditions apply:
+<ul>
+  <li>The amount of String elements being concatenated surpasses the <i>threshold</i> parameter</li>
+  <li>The elements are either variables or String literals which length surpasses the <i>string length</i> parameter
+  </li>
+</ul>
+</p>
+
+
+<h2>Noncompliant Code Example</h2>
+With the default threshold of 5 and string length of 19
+<pre>
+public void concatMethod() {
+  String variable = "trigger an Issue here because the rule ";
+  String str = "This is an example for a " + // Noncompliant
+      "case where multiple Strings are " +
+      "being concatenated in a single variable. " +
+      "Normal String concatenation using + will " +
+      variable +
+      "is designed to report this kind of behaviour";
+  // ...
+}
+</pre>
+
+<h2>Compliant Solution</h2>
+<pre>
+public void concatMethod() {
+  String variable = "trigger an Issue here because the rule ";
+  StringBuilder str = new StringBuilder();
+  str.append("This is an example for a "); // Compliant
+  str.append("case where multiple Strings are ");
+  str.append("being concatenated in a single variable. ");
+  str.append("Normal String concatenation using + will ");
+  str.append(variable);
+  str.append("is designed to report this kind of behaviour");
+  // ...
+}
+</pre>
