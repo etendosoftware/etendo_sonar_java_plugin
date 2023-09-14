@@ -29,7 +29,7 @@ public class SetAdminModeInTry extends IssuableSubscriptionVisitor {
         currentLocation = currentLocation.parent();
       }
       if (currentLocation.parent() == null) {
-        reportIssue(tree, IssueMessages.CONTEXT_CHANGED_OUTSIDE_TRY);
+        reportIssue(tree, IssueMessages.CONTEXT_CHANGED_OUTSIDE_TRY.getMessage());
       }
     }
   }

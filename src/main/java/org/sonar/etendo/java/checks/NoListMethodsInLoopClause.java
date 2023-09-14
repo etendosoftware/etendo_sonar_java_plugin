@@ -49,7 +49,7 @@ public class NoListMethodsInLoopClause extends IssuableSubscriptionVisitor {
     }
 
     if (loopCondition != null && StatementUtils.hasListMethodInvocation(loopCondition)) {
-      reportIssue(loopCondition, IssueMessages.NO_METHOD_INSIDE_FOR);
+      reportIssue(loopCondition, IssueMessages.NO_METHOD_INSIDE_FOR.getMessage());
     }
   }
 }

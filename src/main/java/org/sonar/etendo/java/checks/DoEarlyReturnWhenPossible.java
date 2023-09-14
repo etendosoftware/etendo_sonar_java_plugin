@@ -34,7 +34,7 @@ public class DoEarlyReturnWhenPossible extends IssuableSubscriptionVisitor {
     boolean isInitialErrorCondition = StatementUtils.statementHandlesInitialErrorCondOnElse(ifStatement);
 
     if (isSimpleIfElse || isInitialErrorCondition) {
-      reportIssue(ifStatement, IssueMessages.DO_EARLY_RETURN);
+      reportIssue(ifStatement, IssueMessages.DO_EARLY_RETURN.getMessage());
     }
     visitedNodes.add(tree);
   }

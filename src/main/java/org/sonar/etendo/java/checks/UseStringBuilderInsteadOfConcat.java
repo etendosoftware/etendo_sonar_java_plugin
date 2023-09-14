@@ -47,7 +47,7 @@ public class UseStringBuilderInsteadOfConcat extends IssuableSubscriptionVisitor
       return;
     boolean stringsAreConcatenated = concatStringLiteralsOrVars(concats, tree);
     if (stringsAreConcatenated && concats.size() >= threshold)
-      reportIssue(concats.get(0), IssueMessages.MULTIPLE_STR_CONCAT_NOT_ALLOWED);
+      reportIssue(concats.get(0), IssueMessages.MULTIPLE_STR_CONCAT_NOT_ALLOWED.getMessage());
     concats.clear();
   }
 
