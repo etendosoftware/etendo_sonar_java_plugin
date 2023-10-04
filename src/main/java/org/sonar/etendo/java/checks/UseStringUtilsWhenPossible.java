@@ -32,7 +32,7 @@ public class UseStringUtilsWhenPossible extends IssuableSubscriptionVisitor {
         if (!methodInvocation.methodSelect().is(Tree.Kind.IDENTIFIER)) { // Only check if it's an expression
           Type methodType = ((MemberSelectExpressionTree) methodInvocation.methodSelect()).expression().symbolType();
           if (StringUtils.equals(methodType.symbol().name(), "String")) {
-            reportIssue(methodInvocation, IssueMessages.USE_STRING_UTILS);
+            reportIssue(methodInvocation, IssueMessages.USE_STRING_UTILS.getMessage());
           }
         }
         break;
@@ -42,7 +42,7 @@ public class UseStringUtilsWhenPossible extends IssuableSubscriptionVisitor {
         Type rightOp = equalsExpression.rightOperand().symbolType();
         if (StringUtils.equals(leftOp.fullyQualifiedName(), JAVA_LANG_STRING) &&
             StringUtils.equals(rightOp.fullyQualifiedName(), JAVA_LANG_STRING)) {
-          reportIssue(equalsExpression, IssueMessages.USE_STRING_UTILS);
+          reportIssue(equalsExpression, IssueMessages.USE_STRING_UTILS.getMessage());
         }
         break;
       default:

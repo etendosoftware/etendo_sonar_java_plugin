@@ -29,13 +29,13 @@ public class RestorePreviousModeInFinally extends IssuableSubscriptionVisitor {
       BlockTree finallyStatement = tryStatement.finallyBlock();
 
       if (finallyStatement == null) {
-        reportIssue(setAdminModeInsideTry.get(), IssueMessages.CONTEXT_MODE_NOT_RESTORED);
+        reportIssue(setAdminModeInsideTry.get(), IssueMessages.CONTEXT_MODE_NOT_RESTORED.getMessage());
         return;
       }
       Optional<MethodInvocationTree> restoreMethod = StatementUtils
           .getMethodIfExists(finallyStatement, "OBContext", "restorePreviousMode");
       if (!restoreMethod.isPresent()) {
-        reportIssue(setAdminModeInsideTry.get(), IssueMessages.CONTEXT_MODE_NOT_RESTORED);
+        reportIssue(setAdminModeInsideTry.get(), IssueMessages.CONTEXT_MODE_NOT_RESTORED.getMessage());
       }
     }
   }

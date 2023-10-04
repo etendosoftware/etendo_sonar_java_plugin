@@ -50,7 +50,7 @@ public class NoCriteriaListForUniqueRule extends IssuableSubscriptionVisitor {
     }
 
     if (new HashSet<>(fullInvocation).containsAll(Arrays.asList("list", "get"))) {
-      reportIssue(rootMethodName, IssueMessages.USE_UNIQUE);
+      reportIssue(rootMethodName, IssueMessages.USE_UNIQUE.getMessage());
     }
   }
 
