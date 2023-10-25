@@ -1,0 +1,11 @@
+{
+  "title": "Massive String concatenation should be made using StringBuilder",
+  "type": "code_smell",
+  "status": "ready",
+  "tags": [
+    "performance",
+    "etendo",
+    "bad-practice"
+  ],
+  "defaultSeverity": "Critical"
+}

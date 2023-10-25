@@ -6,7 +6,7 @@
   <packaging>sonar-plugin</packaging>
   <name>SonarQube Java :: Etendo Plugin :: Custom Java rules for Etendo</name>
   <version>1.0.0-SNAPSHOT</version>
-  <description>Custom Sonarqube Java rules for Etendo</description>
+  <description>Custom Sonarqube Java rules for Etendo Software projects</description>
   <build>
     <plugins>
       <plugin>
@@ -16,11 +16,11 @@
         <extensions>true</extensions>
         <configuration>
           <pluginKey>java-custom</pluginKey>
-          <pluginName>Java Custom Rules</pluginName>
-          <pluginClass>com.etendoerp.sonar.EtendoJavaPlugin</pluginClass>
+          <pluginName>Java Custom Rules for Etendo</pluginName>
+          <pluginClass>org.sonar.etendo.java.EtendoJavaPlugin</pluginClass>
           <sonarLintSupported>true</sonarLintSupported>
           <skipDependenciesPackaging>true</skipDependenciesPackaging>
-          <sonarQubeMinVersion>8.9</sonarQubeMinVersion>
+          <sonarQubeMinVersion>${sonarqube.version}</sonarQubeMinVersion>
           <requirePlugins>java:${sonarjava.version}</requirePlugins>
         </configuration>
       </plugin>
@@ -33,6 +33,18 @@
             <goals>
               <goal>shade</goal>
             </goals>
+            <configuration>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
           </execution>
         </executions>
         <configuration />

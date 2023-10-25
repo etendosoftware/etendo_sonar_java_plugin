@@ -1,0 +1,11 @@
+{
+  "title": "The OBCriteria.list() method should not be used for single result queries",
+  "type": "code_smell",
+  "status": "ready",
+  "tags": [
+    "bad-practice",
+    "etendo",
+    "performance"
+  ],
+  "defaultSeverity": "Critical"
+}

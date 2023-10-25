@@ -1,0 +1,12 @@
+{
+  "title": "OBContext.setAdminMode() should be called inside try-catch blocks",
+  "type": "Bug",
+  "status": "ready",
+  "tags": [
+    "error-handling",
+    "unpredictable",
+    "etendo",
+    "pitfall"
+  ],
+  "defaultSeverity": "Critical"
+}
