@@ -1,14 +1,14 @@
 package org.sonar.etendo.java.checks;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.sonar.java.checks.verifier.CheckVerifier;
 
-class RestorePreviousModeInFinallyTest {
+public class RestorePreviousModeInFinallyTest {
 
   @Test
-  void test() {
+  public void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/RestorePreviousModeInFinally.java")
+        .onFile("src/test/resources/RestorePreviousModeInFinally.java")
         .withCheck(new RestorePreviousModeInFinally())
         .verifyIssues();
   }

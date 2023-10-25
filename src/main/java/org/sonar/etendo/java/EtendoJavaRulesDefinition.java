@@ -16,7 +16,7 @@ import org.sonarsource.analyzer.commons.RuleMetadataLoader;
 public class EtendoJavaRulesDefinition implements RulesDefinition {
 
   public static final String REPOSITORY_KEY = "etendo-software";
-  public static final String REPOSITORY_NAME = "Etendo Custom Rules";
+  public static final String REPOSITORY_NAME = "Etendo Software";
   // don't change that because the path is hard coded in CheckVerifier
   private static final String RESOURCE_BASE_PATH = "org/sonar/l10n/java/rules/java";
   // Add the rule keys of the rules which need to be considered as template-rules
