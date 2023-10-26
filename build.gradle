@@ -20,16 +20,16 @@ ext {
     sonarApiVersion = '9.9.0.229'
     sonarqubeVersion = '9.6.1.59531'
     sonarJavaVersion = '7.16.0.30901'
-    artifact = "etendo-java-plugin"
-    repository = "https://maven.pkg.github.com/etendosoftware/etendo_sonar_java_plugin"
+    artifact = 'etendo.java.plugin'
+    repository = 'https://maven.pkg.github.com/etendosoftware/etendo_sonar_java_plugin'
 }
 
 dependencies {
     implementation "org.sonarsource.java:sonar-java-plugin:${sonarJavaVersion}"
     implementation "org.sonarsource.api.plugin:sonar-plugin-api:${sonarApiVersion}"
     implementation "org.sonarsource.java:java-checks-testkit:${sonarJavaVersion}"
-    testImplementation "org.junit.jupiter:junit-jupiter:5.7.0"
-    testImplementation "org.junit.jupiter:junit-jupiter-migrationsupport:5.7.0"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-migrationsupport:5.7.0'
     implementation 'org.assertj:assertj-core:3.23.1'
     implementation 'org.sonarsource.java:java-frontend:7.21.0.31796'
     implementation 'org.sonarsource.analyzer-commons:sonar-analyzer-commons:1.24.0.965'
@@ -42,18 +42,16 @@ description = 'Sonar plugin with Etendo-specific Java rules'
 publishing {
     repositories {
         maven {
-            url "https://maven.pkg.github.com/etendosoftware/etendo_sonar_java_plugin"
+            url repository
             credentials {
                 username "${githubUser}"
                 password "${githubToken}"
-
             }
         }
     }
     publications {
         shadow(MavenPublication) { publication ->
             project.shadow.component(publication)
-
             groupId = group
             artifactId = artifact
             version = version
@@ -63,11 +61,10 @@ publishing {
 
 repositories {
     maven {
-        url "https://maven.pkg.github.com/etendosoftware/etendo_sonar_java_plugin"
+        url repository
         credentials {
             username "${githubUser}"
             password "${githubToken}"
-
         }
     }
 }
@@ -86,18 +83,20 @@ test {
     finalizedBy jacocoTestReport
 }
 
+def buildDate = new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+
 jar {
     manifest {
-        attributes "Build-Jdk": System.getProperty('java.version'),
-                "Build-Time": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "Plugin-BuildDate": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+        attributes 'Build-Jdk': System.getProperty('java.version'),
+                'Build-Time': buildDate,
+                'Plugin-BuildDate': buildDate,
                 'Plugin-Key': 'etendo-software',
                 'Plugin-Name': "Etendo Software's custom Java rules",
                 'Plugin-Version': "$project.version",
                 'Plugin-Class': 'org.sonar.etendo.java.EtendoJavaPlugin',
                 'Plugin-Description': 'Custom Sonarqube Java rules for Etendo',
-                'Plugin-Homepage': "https://github.com/etendosoftware/etendo_sonar_java_plugin",
-                'Plugin-IssueTrackerUrl': "https://github.com/etendosoftware/etendo_sonar_java_plugin/issues",
+                'Plugin-Homepage': 'https://github.com/etendosoftware/etendo_sonar_java_plugin',
+                'Plugin-IssueTrackerUrl': 'https://github.com/etendosoftware/etendo_sonar_java_plugin/issues',
                 "Plugin-Organization": 'Etendo Software',
                 "Plugin-OrganizationUrl": 'https://github.com/etendosoftware'
         // more attributes as necessary
