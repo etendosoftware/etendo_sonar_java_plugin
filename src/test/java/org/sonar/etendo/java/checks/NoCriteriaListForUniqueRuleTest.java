@@ -1,14 +1,14 @@
 package org.sonar.etendo.java.checks;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.sonar.java.checks.verifier.CheckVerifier;
 
-class NoCriteriaListForUniqueRuleTest {
+public class NoCriteriaListForUniqueRuleTest {
 
   @Test
-  void test() {
+  public void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/NoCriteriaListForUniqueRule.java")
+        .onFile("src/test/resources/NoCriteriaListForUniqueRule.java")
         .withCheck(new NoCriteriaListForUniqueRule())
         .verifyIssues();
   }
