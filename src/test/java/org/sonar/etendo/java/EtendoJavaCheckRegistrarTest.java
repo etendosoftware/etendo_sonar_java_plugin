@@ -2,13 +2,13 @@ package org.sonar.etendo.java;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.sonar.plugins.java.api.CheckRegistrar;
 
-class EtendoJavaCheckRegistrarTest {
+public class EtendoJavaCheckRegistrarTest {
 
   @Test
-  void checkNumberRules() {
+  public void checkNumberRules() {
     CheckRegistrar.RegistrarContext context = new CheckRegistrar.RegistrarContext();
 
     EtendoJavaCheckRegistrar registrar = new EtendoJavaCheckRegistrar();

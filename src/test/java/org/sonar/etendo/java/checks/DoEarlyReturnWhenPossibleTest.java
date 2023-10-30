@@ -1,14 +1,14 @@
 package org.sonar.etendo.java.checks;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.sonar.java.checks.verifier.CheckVerifier;
 
-class DoEarlyReturnWhenPossibleTest {
+public class DoEarlyReturnWhenPossibleTest {
 
   @Test
-  void test() {
+  public void test() {
     CheckVerifier.newVerifier()
-        .onFile("src/test/files/DoEarlyReturnWhenPossible.java")
+        .onFile("src/test/resources/DoEarlyReturnWhenPossible.java")
         .withCheck(new DoEarlyReturnWhenPossible())
         .verifyIssues();
   }

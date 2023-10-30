@@ -16,6 +16,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 public class DoEarlyReturnWhenPossible extends IssuableSubscriptionVisitor {
 
   private final Set<Tree> visitedNodes = new HashSet<>();
+
   @Override
   public List<Tree.Kind> nodesToVisit() {
     return Collections.singletonList(Tree.Kind.IF_STATEMENT);
