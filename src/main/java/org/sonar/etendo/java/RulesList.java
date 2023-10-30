@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.sonar.etendo.java.checks.DoEarlyReturnWhenPossible;
 import org.sonar.etendo.java.checks.NoCriteriaListForUniqueRule;
+import org.sonar.etendo.java.checks.NoGlobalOBContextVariables;
 import org.sonar.etendo.java.checks.NoListMethodsInLoopClause;
 import org.sonar.etendo.java.checks.RestorePreviousModeInFinally;
 import org.sonar.etendo.java.checks.SetAdminModeInTry;
@@ -32,6 +33,7 @@ public final class RulesList {
     return Arrays.asList(
         DoEarlyReturnWhenPossible.class,
         NoCriteriaListForUniqueRule.class,
+        NoGlobalOBContextVariables.class,
         NoListMethodsInLoopClause.class,
         RestorePreviousModeInFinally.class,
         SetAdminModeInTry.class,

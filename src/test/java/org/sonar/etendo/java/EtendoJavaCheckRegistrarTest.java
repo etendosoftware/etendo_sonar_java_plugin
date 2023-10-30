@@ -14,7 +14,7 @@ public class EtendoJavaCheckRegistrarTest {
     EtendoJavaCheckRegistrar registrar = new EtendoJavaCheckRegistrar();
     registrar.register(context);
 
-    assertThat(context.checkClasses()).hasSize(7);
+    assertThat(context.checkClasses()).hasSize(8);
     assertThat(context.testCheckClasses()).hasSize(0); // NOSONAR
   }
 }

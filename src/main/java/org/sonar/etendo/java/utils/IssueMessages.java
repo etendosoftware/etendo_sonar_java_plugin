@@ -8,7 +8,10 @@ public enum IssueMessages {
   CONTEXT_CHANGED_OUTSIDE_TRY("Move this context mode change inside a try-catch block"),
   CONTEXT_MODE_NOT_RESTORED("Restore the OBContext previous mode in this try block's 'finally' stage"),
   MULTIPLE_STR_CONCAT_NOT_ALLOWED(
-      "Multiple string concatenation not allowed. Consider using StringBuilder for better performance");
+      "Multiple string concatenation not allowed. Consider using StringBuilder for better performance"),
+  GLOBAL_OBCONTEXT_VARS_NOT_ALLOWED("`OBContext.getOBContext().getCurrent<Type>()` method should not be evaluated at global scope");
+
+
 
   private final String message;
 

@@ -1,0 +1,32 @@
+<p>If a variable is set globally with an <i>OBContext</i> method call, when starting the tomcat server,
+  at the time the java classes are reviewed, the <i>OBContext</i> arrives null, therefore a <i>NullPointerException</i>
+  would be generated because it is not detected at compilation time.<br/><br/>
+  The solution for this type of issue is to initialize the variable inside the method or methods that use it.</p>
+
+<h2>Noncompliant Code Example</h2>
+<pre>
+  public class CallPythonScript extends DalBaseProcess {
+
+    private static final Logger log = Logger.getLogger(CallPythonScript.class);
+    private static Client currentClient = OBContext.getOBContext().getCurrentClient(); // Noncompliant
+
+    @Override
+    protected void doExecute(ProcessBundle bundle) throws Exception {
+      // ...
+    }
+  }
+</pre>
+
+<h2>Compliant Solution</h2>
+<pre>
+  public class CallPythonScript extends DalBaseProcess {
+
+    private static final Logger log = Logger.getLogger(CallPythonScript.class);
+
+    @Override
+    protected void doExecute(ProcessBundle bundle) throws Exception {
+      private static Client currentClient = OBContext.getOBContext().getCurrentClient();
+      // ...
+    }
+  }
+</pre>
