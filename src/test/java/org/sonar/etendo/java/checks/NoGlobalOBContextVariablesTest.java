@@ -5,7 +5,7 @@ import org.sonar.java.checks.verifier.CheckVerifier;
 
 public class NoGlobalOBContextVariablesTest {
   @Test
-  public void test() {
+  public void checkRule() {
     CheckVerifier.newVerifier()
         .onFile("src/test/resources/NoGlobalOBContextVariables.java")
         .withCheck(new NoGlobalOBContextVariables())

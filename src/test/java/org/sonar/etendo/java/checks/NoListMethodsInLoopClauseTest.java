@@ -6,7 +6,7 @@ import org.sonar.java.checks.verifier.CheckVerifier;
 public class NoListMethodsInLoopClauseTest {
 
   @Test
-  public void test() {
+  public void checkRule() {
     CheckVerifier.newVerifier()
         .onFile("src/test/resources/NoListMethodsInLoopClause.java")
         .withCheck(new NoListMethodsInLoopClause())

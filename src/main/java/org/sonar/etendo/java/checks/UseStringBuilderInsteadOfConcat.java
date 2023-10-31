@@ -21,7 +21,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 public class UseStringBuilderInsteadOfConcat extends IssuableSubscriptionVisitor {
 
   public static final int STR_LEN_DEFAULT_VALUE = 19;
-  private static final int DEFAULT_VALUE = 5;
+  public static final int DEFAULT_VALUE = 5;
   private final Set<Tree> visitedNodes = new HashSet<>();
   private final List<Tree> concats = new ArrayList<>();
   @RuleProperty(
