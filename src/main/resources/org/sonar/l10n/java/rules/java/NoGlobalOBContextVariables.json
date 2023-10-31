@@ -1,0 +1,11 @@
+{
+  "title": "\"OBContext.getOBContext().getCurrent<Type>()\" methods should not be evaluated at global scope",
+  "type": "bug",
+  "status": "ready",
+  "tags": [
+    "pitfall",
+    "etendo",
+    "unpredictable"
+  ],
+  "defaultSeverity": "Critical"
+}

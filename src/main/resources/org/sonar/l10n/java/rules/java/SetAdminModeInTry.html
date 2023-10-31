@@ -1,0 +1,29 @@
+<p>The <i>OBContext.setAdminMode()</i> method should always be called inside a <i>try-catch</i> block
+  to handle any errors that could come from it, as this method failing would leave the software in
+  an unstable state</p>
+
+<h2>Noncompliant Code Example</h2>
+<pre>
+  public void doSomethingMethod() {
+    // ...
+    OBContext.setAdminMode(true); // Noncompliant
+    try {
+      // ...
+    } catch (Exception e) {
+      // ...
+    }
+  }
+</pre>
+
+<h2>Compliant Solution</h2>
+<pre>
+  public void doSomethingMethod() {
+    // ...
+    try {
+      OBContext.setAdminMode(true); // Compliant
+      // ...
+    } catch (Exception e) {
+      // ...
+    }
+  }
+</pre>
