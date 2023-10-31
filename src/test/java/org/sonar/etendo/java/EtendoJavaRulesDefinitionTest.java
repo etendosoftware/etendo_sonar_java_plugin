@@ -13,8 +13,10 @@ import org.sonar.etendo.java.checks.UseStringBuilderInsteadOfConcat;
 
 public class EtendoJavaRulesDefinitionTest {
 
+  private static final String CONCAT_RULE = "UseStringBuilderInsteadOfConcat";
+
   private static void assertParameterProperties(Repository repository) {
-    Param threshold = repository.rule("UseStringBuilderInsteadOfConcat").param("Threshold");
+    Param threshold = repository.rule(CONCAT_RULE).param("Threshold");
     assertThat(threshold).isNotNull();
     String defaultThreshold = String.valueOf(UseStringBuilderInsteadOfConcat.DEFAULT_VALUE);
     assertThat(threshold.defaultValue()).isEqualTo(defaultThreshold);
@@ -22,7 +24,7 @@ public class EtendoJavaRulesDefinitionTest {
         "Number of concatenations (literals and variables) that have to be made to trigger an issue");
     assertThat(threshold.type()).isEqualTo(RuleParamType.INTEGER);
 
-    Param min = repository.rule("UseStringBuilderInsteadOfConcat").param("Min String Length");
+    Param min = repository.rule(CONCAT_RULE).param("Min String Length");
     assertThat(min).isNotNull();
     String defaultMinLen = String.valueOf(UseStringBuilderInsteadOfConcat.STR_LEN_DEFAULT_VALUE);
     assertThat(min.defaultValue()).isEqualTo(defaultMinLen);
@@ -32,7 +34,7 @@ public class EtendoJavaRulesDefinitionTest {
   }
 
   private static void assertRuleProperties(Repository repository) {
-    Rule rule = repository.rule("UseStringBuilderInsteadOfConcat");
+    Rule rule = repository.rule(CONCAT_RULE);
     assertThat(rule).isNotNull();
     assertThat(rule.name()).isEqualTo("Massive String concatenation should be made using StringBuilder");
     assertThat(rule.type()).isEqualTo(RuleType.CODE_SMELL);
