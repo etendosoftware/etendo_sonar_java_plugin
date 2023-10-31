@@ -16,20 +16,20 @@ public class EtendoJavaRulesDefinitionTest {
   private static final String CONCAT_RULE = "UseStringBuilderInsteadOfConcat";
 
   private static void assertParameterProperties(Repository repository) {
-    Param threshold = repository.rule(CONCAT_RULE).param("Threshold");
+    Param threshold = repository.rule(CONCAT_RULE).param(UseStringBuilderInsteadOfConcat.THRESHOLD_PARAM);
     assertThat(threshold).isNotNull();
-    String defaultThreshold = String.valueOf(UseStringBuilderInsteadOfConcat.DEFAULT_VALUE);
+    String defaultThreshold = String.valueOf(UseStringBuilderInsteadOfConcat.THRESHOLD_DEFAULT_VALUE);
     assertThat(threshold.defaultValue()).isEqualTo(defaultThreshold);
     assertThat(threshold.description()).isEqualTo(
-        "Number of concatenations (literals and variables) that have to be made to trigger an issue");
+        UseStringBuilderInsteadOfConcat.THRESHOLD_DESCRIPTION);
     assertThat(threshold.type()).isEqualTo(RuleParamType.INTEGER);
 
-    Param min = repository.rule(CONCAT_RULE).param("Min String Length");
+    Param min = repository.rule(CONCAT_RULE).param(UseStringBuilderInsteadOfConcat.STR_LEN_PARAM);
     assertThat(min).isNotNull();
     String defaultMinLen = String.valueOf(UseStringBuilderInsteadOfConcat.STR_LEN_DEFAULT_VALUE);
     assertThat(min.defaultValue()).isEqualTo(defaultMinLen);
     assertThat(min.description()).isEqualTo(
-        "The minimum size a String should be to be taken into account when counting concatenations");
+        UseStringBuilderInsteadOfConcat.STR_LEN_DESCRIPTION);
     assertThat(min.type()).isEqualTo(RuleParamType.INTEGER);
   }
 
