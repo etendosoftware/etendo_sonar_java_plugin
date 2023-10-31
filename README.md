@@ -19,3 +19,8 @@
 1. Download the desired plugin version on your SonarQube server
 2. Move the downloaded jar to extensions/plugins
 3. Restart SonarQube
+
+# Release Notes
+
+### 1.0.0
+- Created SonarQube plugin for Etendo Java rules
