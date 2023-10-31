@@ -20,20 +20,24 @@ import org.sonar.plugins.java.api.tree.Tree;
 @Rule(key = "UseStringBuilderInsteadOfConcat")
 public class UseStringBuilderInsteadOfConcat extends IssuableSubscriptionVisitor {
 
+  public static final String THRESHOLD_PARAM = "Threshold";
+  public static final int THRESHOLD_DEFAULT_VALUE = 5;
+  public static final String THRESHOLD_DESCRIPTION = "Number of concatenations (literals and variables) that have to be made to trigger an issue";
+  public static final String STR_LEN_PARAM = "Min String Length";
   public static final int STR_LEN_DEFAULT_VALUE = 19;
-  private static final int DEFAULT_VALUE = 5;
+  public static final String STR_LEN_DESCRIPTION = "The minimum size a String should be to be taken into account when counting concatenations";
   private final Set<Tree> visitedNodes = new HashSet<>();
   private final List<Tree> concats = new ArrayList<>();
   @RuleProperty(
-      key = "Threshold",
-      defaultValue = "" + DEFAULT_VALUE,
-      description = "Number of concatenations (literals and variables) that have to be made to trigger an issue")
-  protected int threshold = DEFAULT_VALUE;
+      key = THRESHOLD_PARAM,
+      defaultValue = "" + THRESHOLD_DEFAULT_VALUE,
+      description = THRESHOLD_DESCRIPTION)
+  protected int threshold = THRESHOLD_DEFAULT_VALUE;
 
   @RuleProperty(
-      key = "Min String Length",
+      key = STR_LEN_PARAM,
       defaultValue = "" + STR_LEN_DEFAULT_VALUE,
-      description = "The minimum size a String should be to be taken into account when counting concatenations")
+      description = STR_LEN_DESCRIPTION)
   protected int minStrLen = STR_LEN_DEFAULT_VALUE;
 
   @Override
