@@ -72,4 +72,15 @@ public class UseStringBuilderInsteadOfConcat extends IssuableSubscriptionVisitor
     }
     return false;
   }
+
+  public void testIssueFromSonar() {
+    String variable = "trigger an Issue here because the rule ";
+    String str = "This is an example for a " +
+        "case where multiple Strings are " +
+        "being concatenated in a single variable. " +
+        "Normal String concatenation using + will " +
+        variable +
+        "is designed to report this kind of behaviour";
+    // ...
+  }
 }

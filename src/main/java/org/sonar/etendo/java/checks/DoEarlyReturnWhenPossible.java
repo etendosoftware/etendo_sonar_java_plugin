@@ -39,4 +39,12 @@ public class DoEarlyReturnWhenPossible extends IssuableSubscriptionVisitor {
     }
     visitedNodes.add(tree);
   }
+
+  private boolean testIssueFromSonar(int number) {
+    if (number > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -39,4 +39,12 @@ public class RestorePreviousModeInFinally extends IssuableSubscriptionVisitor {
       }
     }
   }
+
+  public void testIssueFromSonar() {
+    try {
+      OBContext.setAdminMode(true);
+    } catch (Exception e) {
+      throw new Exception("This is an exception");
+    }
+  }
 }

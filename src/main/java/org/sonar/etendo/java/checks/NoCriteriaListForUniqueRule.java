@@ -58,4 +58,11 @@ public class NoCriteriaListForUniqueRule extends IssuableSubscriptionVisitor {
   public void leaveNode(Tree tree) {
     invocationChain.clear();
   }
+
+  public Product testIssueFromSonar(String invoiceId) {
+    OBCriteria<Invoice> invCriteria = OBDal.getInstance().createCriteria(Invoice.class);
+    invCriteria.add(Restrictions.eq(Invoice.PROPERTY_ID, invoiceId));
+
+    return invCriteria.list().get(0);
+  }
 }

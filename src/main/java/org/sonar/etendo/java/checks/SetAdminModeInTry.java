@@ -33,4 +33,14 @@ public class SetAdminModeInTry extends IssuableSubscriptionVisitor {
       }
     }
   }
+
+  public void testIssueFromSonar() {
+    // ...
+    OBContext.setAdminMode(true);
+    try {
+      // ...
+    } catch (Exception e) {
+      // ...
+    }
+  }
 }

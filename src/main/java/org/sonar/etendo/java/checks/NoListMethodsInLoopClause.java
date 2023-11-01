@@ -52,4 +52,11 @@ public class NoListMethodsInLoopClause extends IssuableSubscriptionVisitor {
       reportIssue(loopCondition, IssueMessages.NO_METHOD_INSIDE_FOR.getMessage());
     }
   }
+
+  public void testIssueFromSonar() {
+    OBCriteria<OrderHistoryItem> criteria = OBDal.getInstance().createCriteria(OrderHistoryItem.class);
+    for (OrderHistory item : criteria.list()) {
+      // ...
+    }
+  }
 }

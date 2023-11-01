@@ -17,6 +17,8 @@ import org.sonar.plugins.java.api.tree.VariableTree;
 
 @Rule(key = "NoGlobalOBContextVariables")
 public class NoGlobalOBContextVariables extends IssuableSubscriptionVisitor {
+
+  private static final Client testIssueFromSonar = OBContext.getOBContext().getCurrentClient();
   @Override
   public List<Tree.Kind> nodesToVisit() {
     return Collections.singletonList(Tree.Kind.CLASS);
