@@ -11,6 +11,7 @@ import org.sonar.java.model.expression.MethodInvocationTreeImpl;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.tree.ClassTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
+import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
 import org.sonar.plugins.java.api.tree.Tree;
 import org.sonar.plugins.java.api.tree.VariableTree;
@@ -31,8 +32,8 @@ public class NoGlobalOBContextVariables extends IssuableSubscriptionVisitor {
     for (Tree classVarTree : classVars) {
       VariableTree classVar = (VariableTree) classVarTree;
       ExpressionTree varInitializer = classVar.initializer();
-      if (varInitializer.is(Tree.Kind.METHOD_INVOCATION)) {
-        SyntaxToken initializerFstToken = ((MethodInvocationTreeImpl) varInitializer).methodSelect().firstToken();
+      if (varInitializer != null && varInitializer.is(Tree.Kind.METHOD_INVOCATION)) {
+        SyntaxToken initializerFstToken = ((MethodInvocationTree) varInitializer).methodSelect().firstToken();
         if (StringUtils.equals("OBContext", initializerFstToken.text())) {
           reportIssue(classVar, IssueMessages.GLOBAL_OBCONTEXT_VARS_NOT_ALLOWED.getMessage());
         }
