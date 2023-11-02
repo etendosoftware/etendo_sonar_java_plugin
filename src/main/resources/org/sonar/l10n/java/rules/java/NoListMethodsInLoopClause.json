@@ -1,0 +1,11 @@
+{
+  "title": "OBCriteria.list() method calls inside loop conditions should be extracted to outside variables",
+  "type": "code_smell",
+  "status": "ready",
+  "tags": [
+    "bad-practice",
+    "etendo",
+    "performance"
+  ],
+  "defaultSeverity": "Critical"
+}

@@ -1,0 +1,25 @@
+<p>If the <i>OBContext.setAdminMode()</i> method is being called inside a <i>try-catch</i> block, then there has to
+  exist a <i>finally</i>
+  block for it, inside which the <i>OBContext.restorePreviousMode()</i> method must be called. This will prevent
+  problems with
+  the OBContext for other methods</p>
+
+<h2>Noncompliant Code Example</h2>
+<pre>
+  try {
+    OBContext.setAdminMode(true); // Noncompliant
+  } catch (Exception e) {
+    throw new Exception("This is an exception");
+  }
+</pre>
+
+<h2>Compliant Solution</h2>
+<pre>
+  try {
+    OBContext.setAdminMode(true); // Compliant
+  } catch (Exception e) {
+    throw new Exception("This is an exception");
+  } finally {
+    OBContext.restorePreviousMode();
+  }
+</pre>
