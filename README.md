@@ -8,7 +8,7 @@
 
 ### Creating jar file (which will be added in the sonar server)
 
-`./gradlew shadowJar`
+`./gradlew clean build shadowJar`
 
 ### Publishing jar to maven repository
 
