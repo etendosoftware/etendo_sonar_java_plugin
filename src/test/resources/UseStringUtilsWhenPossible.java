@@ -37,7 +37,19 @@ class StringUtilsTest {
         str2);
   }
 
-  //////////////////////// TEST CASES FROM CORE CODE SNIPPETS //////////////////////
+  // Test case for Issue #11: rule should ignore String methods that don't have a StringUtils counterpart. E.g: String.format
+  protected void execute(CalloutInfo info) throws ServletException {
+    String documentNo = info.getStringParameter("inpdocumentno");
+    String rectifyingInv = info.getStringParameter("inprectifyingInvoice");
+    Invoice invoice = OBDal.getInstance().get(Invoice.class, rectifyingInv);
+    String incidenceDesc = invoice.getDescription() != null ? "<br>" : "";
+    incidenceDesc += String.format(OBMessageUtils.messageBD("inc_incidence_created"), documentNo); // Compliant
+    invoice.setDescription(incidenceDesc);
+    OBDal.getInstance().save(invoice);
+    OBDal.getInstance().flush();
+  }
+
+  //////////////////////// TEST CASES FROM CORE CODE SNIPPETS ////////////////////////
 
   /*
   `initialize` method of Etendo Core's `TaxesTestData7` class

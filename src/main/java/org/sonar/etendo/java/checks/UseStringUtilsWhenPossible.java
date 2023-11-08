@@ -17,11 +17,23 @@ import org.sonar.plugins.java.api.tree.Tree;
 public class UseStringUtilsWhenPossible extends IssuableSubscriptionVisitor {
 
   private static final String JAVA_LANG_STRING = "java.lang.String";
+  private static final String[] SUPPORTED_METHODS = new String[]{
+      "isEmpty",
+      "trim",
+      "equals",
+      "equalsIgnoreCase",
+      "contains",
+      "indexOf",
+      "substring",
+      "endsWith",
+      "startsWith",
+      "toUpperCase",
+      "toLowerCase"
+  };
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return Arrays.asList(
-        Tree.Kind.METHOD_INVOCATION, Tree.Kind.EQUAL_TO);
+    return Arrays.asList(Tree.Kind.METHOD_INVOCATION, Tree.Kind.EQUAL_TO);
   }
 
   @Override
@@ -31,7 +43,10 @@ public class UseStringUtilsWhenPossible extends IssuableSubscriptionVisitor {
         MethodInvocationTree methodInvocation = (MethodInvocationTree) tree;
         if (!methodInvocation.methodSelect().is(Tree.Kind.IDENTIFIER)) { // Only check if it's an expression
           Type methodType = ((MemberSelectExpressionTree) methodInvocation.methodSelect()).expression().symbolType();
-          if (StringUtils.equals(methodType.symbol().name(), "String")) {
+          String identifier = ((MemberSelectExpressionTree) methodInvocation.methodSelect()).identifier().name();
+          boolean methodIsSupported = Arrays.asList(SUPPORTED_METHODS).contains(identifier);
+
+          if (StringUtils.equals(methodType.symbol().name(), "String") && methodIsSupported) {
             reportIssue(methodInvocation, IssueMessages.USE_STRING_UTILS.getMessage());
           }
         }
@@ -40,8 +55,8 @@ public class UseStringUtilsWhenPossible extends IssuableSubscriptionVisitor {
         BinaryExpressionTree equalsExpression = (BinaryExpressionTree) tree;
         Type leftOp = equalsExpression.leftOperand().symbolType();
         Type rightOp = equalsExpression.rightOperand().symbolType();
-        if (StringUtils.equals(leftOp.fullyQualifiedName(), JAVA_LANG_STRING) &&
-            StringUtils.equals(rightOp.fullyQualifiedName(), JAVA_LANG_STRING)) {
+        if (StringUtils.equals(leftOp.fullyQualifiedName(), JAVA_LANG_STRING) && StringUtils.equals(
+            rightOp.fullyQualifiedName(), JAVA_LANG_STRING)) {
           reportIssue(equalsExpression, IssueMessages.USE_STRING_UTILS.getMessage());
         }
         break;
