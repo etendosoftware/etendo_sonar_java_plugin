@@ -43,4 +43,30 @@ class EarlyReturnTest {
     }
     return valueElement.getText();
   }
+
+  /*
+    `getReport` method from `InfComision` class. Found in 'Drivania' project. Testing rule's behaviour when the conditional 'else'
+    statement to be analyzed is a single expression, instead of a block of code (enclosed in braces)
+   */
+  private String getReport(ConnectionProvider cp, VariablesSecureApp vars, String strDateFrom, String strDateTo,
+      String strcBpartnerId, String strOrg, String strAgentId) throws Exception {
+    String partner = (strcBpartnerId == null || strcBpartnerId.isEmpty()) ? null : strcBpartnerId;
+    String agent = (strAgentId == null || strAgentId.isEmpty()) ? null : strAgentId;
+    String org = (strOrg == null || strOrg.isEmpty()) ? null : strOrg;
+
+    PrintInvoicesData[] data = null;
+    if (null != agent) {
+      return agent;
+    } else {
+      data = PrintInvoicesData.getAgentConPartner(cp, strDateFrom, strDateTo, partner, org);
+    }
+    if (0 != data.length) { // Noncompliant
+      String result = "";
+      for (int i = 0; i < data.length; i++) {
+        result = result + data[i].agent + ",";
+      }
+      return result;
+    } else
+      throw new Exception("No hay datos.");
+  }
 }

@@ -76,25 +76,27 @@ public class StatementUtils {
     StatementTree thenStatement = ifStatement.thenStatement();
     StatementTree elseStatement = ifStatement.elseStatement();
 
-
-    boolean thenStatementIsHandlingError;
-    if (thenStatement.is(Tree.Kind.BLOCK)) {
-      thenStatementIsHandlingError = ((BlockTree) thenStatement).body().stream()
-          .anyMatch(t -> t.is(Tree.Kind.THROW_STATEMENT));
-    } else {
-      thenStatementIsHandlingError = thenStatement.is(Tree.Kind.THROW_STATEMENT);
+    boolean thenStatementIsHandlingError = false;
+    if (thenStatement != null) {
+      if (thenStatement.is(Tree.Kind.BLOCK)) {
+        thenStatementIsHandlingError = ((BlockTree) thenStatement).body().stream()
+            .anyMatch(t -> t.is(Tree.Kind.THROW_STATEMENT));
+      } else {
+        thenStatementIsHandlingError = thenStatement.is(Tree.Kind.THROW_STATEMENT);
+      }
     }
 
-    if (thenStatementIsHandlingError) { // if the 'then' statement already handles the error, then we might be dealing with an already early-returned condition
-      return false;
+    boolean elseStatementIsHandlingError = false;
+    if (elseStatement != null) {
+      if (elseStatement.is(Tree.Kind.BLOCK)) {
+        elseStatementIsHandlingError = ((BlockTree) elseStatement).body().stream()
+            .anyMatch(t -> t.is(Tree.Kind.THROW_STATEMENT));
+      } else {
+        elseStatementIsHandlingError = elseStatement.is(Tree.Kind.THROW_STATEMENT);
+      }
     }
-    if (elseStatement == null) // No exception being handled
-      return false;
-    if (!elseStatement.is(Tree.Kind.IF_STATEMENT)) {
-      BlockTree elseBlock = (BlockTree) elseStatement;
-      return elseBlock.body().stream().anyMatch(t -> t.is(Tree.Kind.THROW_STATEMENT));
-    }
-    return false;
+
+    return thenStatementIsHandlingError || elseStatementIsHandlingError;
   }
 
   /**
