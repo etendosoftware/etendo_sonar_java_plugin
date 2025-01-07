@@ -7,5 +7,5 @@
     "etendo",
     "bad-practice"
   ],
-  "defaultSeverity": "Critical"
+  "defaultSeverity": "Major"
 }

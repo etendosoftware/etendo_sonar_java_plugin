@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exception messages should be obtained as AD_MESSAGE entries</title>
+</head>
+<body>
+  <p>Exception messages should never be hard-coded. An AD_MESSAGE entry should be created for each message to be thrown. This will allow the possibility to translate the messages to other languages, apart from it being easier to modify if needed.</p>
+
+  <h2>Noncompliant Code Example</h2>
+  <pre>
+    public void someMethod() {
+      // ...
+      try {
+        // ...
+      } catch (Exception e) {
+        throw new IllegalArgumentException("Hard-coded message"); // Noncompliant
+      }
+    }
+  </pre>
+
+  <h2>Compliant Solution</h2>
+  <pre>
+    public void someMethod() {
+      // ...
+      try {
+        // ...
+      } catch (Exception e) {
+        throw new IllegalArgumentException(OBMessageUtils.messageBD("AD_MESSAGE_KEY")); // Compliant
+      }
+    }
+  </pre>
+</body>
+</html>
