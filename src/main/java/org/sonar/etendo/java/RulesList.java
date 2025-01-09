@@ -13,6 +13,7 @@ import org.sonar.etendo.java.checks.RestorePreviousModeInFinally;
 import org.sonar.etendo.java.checks.SetAdminModeInTry;
 import org.sonar.etendo.java.checks.UseStringBuilderInsteadOfConcat;
 import org.sonar.etendo.java.checks.UseStringUtilsWhenPossible;
+import org.sonar.etendo.java.checks.UseADMessageForExceptions;
 import org.sonar.plugins.java.api.JavaCheck;
 
 public final class RulesList {
@@ -38,7 +39,8 @@ public final class RulesList {
         RestorePreviousModeInFinally.class,
         SetAdminModeInTry.class,
         UseStringBuilderInsteadOfConcat.class,
-        UseStringUtilsWhenPossible.class);
+        UseStringUtilsWhenPossible.class,
+        UseADMessageForExceptions.class);
   }
 
   /**

@@ -6,7 +6,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'jacoco'
-    id "com.github.johnrengelman.shadow" version "4.0.3"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 repositories {
@@ -101,6 +101,10 @@ jar {
                 "Plugin-OrganizationUrl": 'https://github.com/etendosoftware'
         // more attributes as necessary
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 tasks.withType(JavaCompile) {
