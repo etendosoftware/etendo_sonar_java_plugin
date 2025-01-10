@@ -1,0 +1,11 @@
+{
+  "title": "Exception messages should be obtained as AD_MESSAGE entries",
+  "type": "code_smell",
+  "status": "ready",
+  "tags": [
+    "etendo",
+    "bad-practice",
+    "error-handling"
+  ],
+  "defaultSeverity": "Major"
+}

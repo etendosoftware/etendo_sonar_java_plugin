@@ -9,7 +9,8 @@ public enum IssueMessages {
   CONTEXT_MODE_NOT_RESTORED("Restore the OBContext previous mode in this try block's 'finally' stage"),
   MULTIPLE_STR_CONCAT_NOT_ALLOWED(
       "Multiple string concatenation not allowed. Consider using StringBuilder for better performance"),
-  GLOBAL_OBCONTEXT_VARS_NOT_ALLOWED("Move this \"OBContext.getOBContext()\" variable assignment inside a method.");
+  GLOBAL_OBCONTEXT_VARS_NOT_ALLOWED("Move this \"OBContext.getOBContext()\" variable assignment inside a method."),
+  HARD_CODED_EXCEPTION_MESSAGE("Exception messages should never be hard-coded. An AD_MESSAGE entry should be created for each message to be thrown.");
 
 
 
