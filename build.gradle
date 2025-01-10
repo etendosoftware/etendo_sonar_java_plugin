@@ -36,7 +36,7 @@ dependencies {
 }
 
 group = 'com.etendoerp.sonar'
-version = '1.0.2'
+version = '1.0.3'
 description = 'Sonar plugin with Etendo-specific Java rules'
 
 publishing {
