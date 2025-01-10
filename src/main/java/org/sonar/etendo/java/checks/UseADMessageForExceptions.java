@@ -83,7 +83,8 @@ public class UseADMessageForExceptions extends IssuableSubscriptionVisitor {
    * @return true if the tree contains a messageBD method invocation, false otherwise.
    */
   private boolean containsMessageBDMethod(Tree tree) {
-    if (tree instanceof MethodInvocationTree methodInvocation) {
+    if (tree instanceof MethodInvocationTree) {
+      MethodInvocationTree methodInvocation = (MethodInvocationTree) tree;
       // Check if the method is messageBD
       if (isMessageBDInvocation(methodInvocation)) {
         return true;

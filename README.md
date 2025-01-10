@@ -3,9 +3,6 @@
 
 # Sonar Java Plugin for Etendo
 
-### Requirements
-- Java 17
-
 ### Setting up plugin (before publishing)
 1. Copy the `gradle.properties.template` file and paste it in project root as `gradle.properties`
 2. Fill the `githubUser` and `githubToken` fields with your GitHub credentials

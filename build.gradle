@@ -72,6 +72,7 @@ repositories {
 jacoco {
     toolVersion = '0.8.10'
 }
+
 jacocoTestReport {
     reports {
         xml.required = true
@@ -101,10 +102,6 @@ jar {
                 "Plugin-OrganizationUrl": 'https://github.com/etendosoftware'
         // more attributes as necessary
     }
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 tasks.withType(JavaCompile) {
